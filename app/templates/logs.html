@@ -1,0 +1,54 @@
+{% extends "_base.html" %}
+
+{% block css %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url('static', filename='/css/bootstrap-datepicker.min.css') }}" />  
+{% endblock %}
+
+{% block content %}
+    <title>Просмотр логов</title>
+    {% include 'includes/_search_params.html' %}
+    <div class="logs-table">
+        <div id="loader" class="hidden">
+            <p>fetching...</p>
+        </div>
+        <table>
+            {% include 'includes/_thead.html' %}
+            <tbody id="table-content"></tbody>
+        </table>
+        <div id="logs-empty" class="hidden">Ничего не найдено</div>
+        <div id="pagination-control"></div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+    <script type="text/javascript" src="{{ url('static', filename='/js/libs/pagination.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('static', filename='/js/libs/moment.js') }}"></script>
+    <script type="text/javascript" src="{{ url('static', filename='/js/libs/bootstrap-datepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('static', filename='/js/libs/bootstrap-datepicker.ru.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('static', filename='/js/logs.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(() => {
+            setInitialDate();
+            getLogs();
+        });
+        $('#search').on('click', () => {
+            getLogs();
+        });
+        $('#clear-search').on('click', () => {
+            clearSearchParams();
+        });
+        $('.th-sort').on('click', (e) => {
+            sortByField(e.target);
+        });        
+        $('.dates').datepicker({
+            language: 'ru',
+            format: 'dd.mm.yyyy',
+            autoclose: true,
+        });
+        $('.dates').on('change', (e) => {
+            transformDateForSearchQuery(e.target);
+        });
+    </script>
+{% endblock %}
