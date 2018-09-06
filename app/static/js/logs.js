@@ -48,7 +48,7 @@ function fetch(data) {
         success: (response) => {
             if (response.logs) {
                 storage.logs = response.logs.map((value) => {
-                    value.created_at = new Date(value.created_at);
+                    value.created_at = new Date(value.created_at.replace(/-/g, "/"));
                     return value;
                 });
                 renderTable();
@@ -68,12 +68,12 @@ function getTableTemplate(logs) {
     for (const log of logs) {
         html += `
             <tr>
+                <td>${moment(log.created_at).format('DD.MM.YYYY HH:mm:ss')}</td>
+                <td>${log.type}</td>
                 <td>${log.user_id}</td>
                 <td>${log.email}</td>
-                <td>${log.type}</td>
                 <td>${log.action}</td>
                 <td>${log.url}</td>
-                <td>${moment(log.created_at).format('DD.MM.YYYY HH:mm:ss')}</td>
             </tr>    
         `
     }
@@ -85,13 +85,16 @@ function renderTable() {
         $('#logs-empty').show();
         $('#table-content').empty();
         $('#pagination-control').empty();
+        $('#logs-count').html(0);
     } else {
         $('#pagination-control').pagination({
             dataSource: storage.logs,
             pageSize: 10,
+            className: 'logs-pagination',
             callback: function(data, pagination) {
                 const html = getTableTemplate(data);
                 $('#table-content').html(html);
+                $('#logs-count').html(storage.logs.length);
             }
         });
     }
