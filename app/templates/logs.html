@@ -9,23 +9,23 @@
 
 {% block content %}
     <h3 class="logs-header">Просмотр логов</h3>
-    {% include 'includes/_search_params.html' %}
+    {% include 'includes/_search_params.html' %}    
+    <div id="loader" class="hidden">
+        <span>Идет загрузка данных ...</span>
+    </div>
+    <div id="logs-empty" class="hidden">Ничего не найдено</div>
     <div class="logs-table-container">
-        <div id="loader" class="hidden">
-            <p>fetching...</p>
-        </div>
         <table class="logs-table table table-striped">
             {% include 'includes/_thead.html' %}
             <tbody id="table-content"></tbody>
         </table>
-        <div id="logs-empty" class="hidden">Ничего не найдено</div>
-        <div class="row">
-            <div class="col-md-6">Найдено: <span id="logs-count"></span></div>
-            <div class="col-md-6">
-                <div id="pagination-control"></div>
-            </div>
-        </div>     
     </div>
+    <div id="table-footer" class="hidden">
+        <div class="col-md-6">Найдено: <span id="logs-count"></span></div>
+        <div class="col-md-6">
+            <div id="pagination-control"></div>
+        </div>
+    </div>     
 {% endblock %}
 
 {% block js %}

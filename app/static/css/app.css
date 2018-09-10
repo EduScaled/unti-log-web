@@ -4,11 +4,8 @@ html, body {
 }
 
 .body-container {
+    display: flex;
     height: 100%;
-
-    margin-right: 0px;
-    margin-left: 0px;
-
     flex-direction: column;
     justify-content: space-between;
 }
@@ -22,8 +19,47 @@ html, body {
     width: 100%;
 }
 
+#table-content {
+    font-size: small;
+}
+
+#table-footer {
+    display: flex;
+    padding-top: 15px;
+}
+
+.logs-table {
+   table-layout: fixed;
+}
+
+.logs-table td {
+    word-wrap: break-word;
+}
+
+.logs-table-container {
+    overflow: scroll;
+    height: calc(100% - 195px);
+}
+
+.logs-table tr {
+    max-width: 150px;
+}
+
+#th-date {
+    width: 180px;
+}
+
+#th-type {
+    width: 80px;  
+}
+
+#th-user {
+    width: 160px;   
+}
+
 .footer {
-    height: 8%;
+    display: flex;
+    height: 50px;
     background: #E52027;
     color: white;
     width: 100%;
@@ -113,6 +149,11 @@ html, body {
     color: #E52027;
 }
 
-.content {
+.content-container {
     display: flex;
+    height: inherit;
+}
+
+.content {
+    height: inherit;
 }

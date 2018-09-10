@@ -11,12 +11,12 @@
         Тип:
         <select id="type" name="type" class="form-control inline">
             <option {%if type==""%}selected{%endif%} value=""></option>
-            <option {%if type=="trace"%}selected{%endif%} value="info">TRACE</option>
+            <option {%if type=="trace"%}selected{%endif%} value="trace">TRACE</option>
             <option {%if type=="debug"%}selected{%endif%} value="debug">DEBUG</option>
-            <option {%if type=="info"%}selected{%endif%} value="warning">INFO</option>
-            <option {%if type=="warn"%}selected{%endif%} value="error">WARN</option>
+            <option {%if type=="info"%}selected{%endif%} value="info">INFO</option>
+            <option {%if type=="warn"%}selected{%endif%} value="warn">WARN</option>
             <option {%if type=="error"%}selected{%endif%} value="error">ERROR</option>
-            <option {%if type=="critical"%}selected{%endif%} value="error">CRITICAL</option>
+            <option {%if type=="critical"%}selected{%endif%} value="critical">CRITICAL</option>
         </select>
     </div>
     <div class="search-field">
