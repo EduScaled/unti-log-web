@@ -1,11 +1,26 @@
+import os
+import sys
+import socket
 import aiohttp
-from utils import get_config
+from app.utils import get_config
 
-config = get_config()
+argv = None
+if len(sys.argv) > 1 and 'wsgi' in sys.argv[1]:
+    argv = sys.argv[1].split("\"")
+    if len(argv) > 1:
+        argv = [None, '--config', argv[1]]
+    else:
+        raise Exception("Can't parse config filename")
+elif os.environ.get('CONFIG', None):
+    argv = [None, '--config', os.environ.get('CONFIG')]
+else:
+    argv = sys.argv[1:]
+
+config = get_config(argv)
 
 api_url = "{}://{}:{}/logs/list/".format(
     config['api']['protocol'],
-    config['api']['host'],
+    socket.gethostbyname(config['api']['host']),
     config['api']['port']
 )
 

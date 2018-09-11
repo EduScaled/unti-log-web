@@ -1,6 +1,6 @@
 import aiohttp_jinja2
 from aiohttp import web
-from service import fetch_logs
+from app.service import fetch_logs
 
 routes = web.RouteTableDef()
 

@@ -3,5 +3,5 @@ port: 8085
 
 api:
   protocol: 'http'
-  host: 127.0.0.1
+  host: unti-log-api
   port: 8080

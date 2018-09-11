@@ -78,12 +78,12 @@ function getTableTemplate(logs) {
     for (const log of logs) {
         html += `
             <tr>
-                <td class="td-date">${moment(log.created_at).format('DD.MM.YYYY HH:mm:ss')}</td>
-                <td class="td-type">${log.type}</td>
-                <td class="td-user">${log.user_id}</td>
-                <td class="td-email">${log.email}</td>
-                <td class="td-action">${log.action}</td>
-                <td class="td-url">${log.url}</td>
+                <td>${moment(log.created_at).format('DD.MM.YYYY HH:mm:ss')}</td>
+                <td>${log.type}</td>
+                <td>${log.user_id}</td>
+                <td>${log.email}</td>
+                <td>${log.action}</td>
+                <td>${log.url}</td>
             </tr>    
         `
     }
@@ -99,7 +99,7 @@ function renderTable() {
     } else {
         $('#pagination-control').pagination({
             dataSource: storage.logs,
-            pageSize: 10,
+            pageSize: 5,
             className: 'logs-pagination',
             callback: function(data, pagination) {
                 const html = getTableTemplate(data);
